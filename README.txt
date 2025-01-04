@@ -18,6 +18,8 @@ Uploaded on: $TODAY_WITH_DASHES
 Original Path: $FOLDER
 Pod of origin: $POD
 
+Output of `readsb version`: $READSB_VERSION
+
 It was made by readsb (https://github.com/wiedehopf/readsb)
 
 

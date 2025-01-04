@@ -95,8 +95,9 @@ fi
 
 for POD in $PODS; do
     echo "[ info] Processing pod $POD"
-    YEAR=$(date +%Y)
+    export YEAR=$(date +%Y)
     FOLDERS=$(kubectl -n adsblol exec -ti $POD -- find /var/globe_history/ -maxdepth 3 -mindepth 3 | sort -r | head -n7 || true)
+    export READSB_VERSION=$(kubectl -n adsblol exec -ti $POD -- readsb --version || true)
     IFS=$'\n\r'
     for FOLDER in $FOLDERS; do
         IFS=$SAVEIFS
