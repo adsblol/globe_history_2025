@@ -1,3 +1,4 @@
+https://github.com/adsblol/globe_history_2025/releases/download/v2025.01.22-planes-readsb-prod-0/v2025.01.22-planes-readsb-prod-0.tar.aa,https://github.com/adsblol/globe_history_2025/releases/download/v2025.01.22-planes-readsb-prod-0/v2025.01.22-planes-readsb-prod-0.tar.ab
 https://github.com/adsblol/globe_history_2025/releases/download/v2025.01.21-planes-readsb-prod-0/v2025.01.21-planes-readsb-prod-0.tar
 https://github.com/adsblol/globe_history_2025/releases/download/v2025.01.20-planes-readsb-prod-0/v2025.01.20-planes-readsb-prod-0.tar.aa,https://github.com/adsblol/globe_history_2025/releases/download/v2025.01.20-planes-readsb-prod-0/v2025.01.20-planes-readsb-prod-0.tar.ab
 https://github.com/adsblol/globe_history_2025/releases/download/v2025.01.19-planes-readsb-prod-0/v2025.01.19-planes-readsb-prod-0.tar
