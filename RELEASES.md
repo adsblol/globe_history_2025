@@ -1,5 +1,6 @@
 # Releases
 # 2025-07
+- 2025-07-11 [planes-readsb-staging-0 (3502 MiB)](https://github.com/adsblol/globe_history_2025/releases/tag/v2025.07.11-planes-readsb-staging-0#assets) [planes-readsb-prod-0 (3500 MiB)](https://github.com/adsblol/globe_history_2025/releases/tag/v2025.07.11-planes-readsb-prod-0#assets) 
 - 2025-07-10 [planes-readsb-staging-0 (3487 MiB)](https://github.com/adsblol/globe_history_2025/releases/tag/v2025.07.10-planes-readsb-staging-0#assets) [planes-readsb-prod-0 (3484 MiB)](https://github.com/adsblol/globe_history_2025/releases/tag/v2025.07.10-planes-readsb-prod-0#assets) 
 - 2025-07-09 [planes-readsb-staging-0 (3393 MiB)](https://github.com/adsblol/globe_history_2025/releases/tag/v2025.07.09-planes-readsb-staging-0#assets) [planes-readsb-prod-0 (3390 MiB)](https://github.com/adsblol/globe_history_2025/releases/tag/v2025.07.09-planes-readsb-prod-0#assets) 
 - 2025-07-08 [planes-readsb-staging-0 (3409 MiB)](https://github.com/adsblol/globe_history_2025/releases/tag/v2025.07.08-planes-readsb-staging-0#assets) [planes-readsb-prod-0 (3407 MiB)](https://github.com/adsblol/globe_history_2025/releases/tag/v2025.07.08-planes-readsb-prod-0#assets) 
