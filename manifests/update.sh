@@ -96,8 +96,9 @@ fi
 for POD in $PODS; do
     echo "[ info] Processing pod $POD"
     export YEAR=$(date +%Y)
-    FOLDERS=$(kubectl -n adsblol exec -ti $POD -- find /var/globe_history/ -maxdepth 3 -mindepth 3 | sort -r | head -n7 || true)
-    export READSB_VERSION=$(kubectl -n adsblol exec -ti $POD -- readsb --version || true)
+    FOLDERS=$(kubectl -n adsblol exec -ti $POD -c readsb -- find /var/globe_history/ -maxdepth 3 -mindepth 3 | sort -r | head -n7 || true)
+    READSB_VERSION=$(kubectl -n adsblol exec $POD -c readsb -- readsb --version || true)
+
     IFS=$'\n\r'
     for FOLDER in $FOLDERS; do
         IFS=$SAVEIFS
@@ -110,7 +111,7 @@ for POD in $PODS; do
         # RELEASE_NAME=v2023.12.31-planes-readsb-test-0
         DATE_WITH_DOTS=$(echo $DATE | sed 's/\//./g')
         export DATE_WITH_DASHES=$(echo $DATE | sed 's/\//-/g')
-        export RELEASE_NAME="v$DATE_WITH_DOTS-$POD"
+        export RELEASE_NAME="v$DATE_WITH_DOTS-${POD}"
         export RELEASE_LINK="https://github.com/adsblol/globe_history_$CURRENT_YEAR/releases/tag/$RELEASE_NAME"
         TODAY=$(date +%Y/%m/%d)
         export TODAY_WITH_DASHES=$(date +%Y-%m-%d)
@@ -124,7 +125,7 @@ for POD in $PODS; do
         fi
         # 4. Check if we already backed it up.
         #    We can check by seeing if there is a GitHub Release vYYYY.MM.DD
-        RELEASE=$(curl -H "Authorization: Bearer $GITHUB_TOKEN" -s https://api.github.com/repos/adsblol/globe_history_$CURRENT_YEAR/releases | jq -r '.[].tag_name' | grep $RELEASE_NAME || true)
+        RELEASE=$(curl -H "Authorization: Bearer $GITHUB_TOKEN" -s https://api.github.com/repos/adsblol/globe_history_$CURRENT_YEAR/releases | jq -r '.[].tag_name' | grep '^$RELEASE_NAME$' || true)
         # If it exists, we skip
         if [ ! -z "$RELEASE" ]; then
             echo "[ info] $RELEASE_NAME has already been backed up. Skipping."
@@ -143,7 +144,16 @@ for POD in $PODS; do
         # 5.1. MKTEMP a folder
         TMP_FOLDER=$(mktemp -d)
         # 5.2. kubectl cp the folder to the temp folder
-        kubectl -n adsblol cp --retries=15 "$POD:$FOLDER" "$TMP_FOLDER"
+        COPY_TRIES=0
+        until kubectl -n adsblol cp --retries=15 "$POD:$FOLDER" "$TMP_FOLDER"; do
+            COPY_TRIES=$((COPY_TRIES+1))
+            if [ $COPY_TRIES -gt 15 ]; then
+                echo "[ error] Failed to copy $FOLDER from $POD after 15 tries. Exiting."
+                exit 1
+            fi
+            echo "[ info] Failed to copy $FOLDER from $POD, retrying in 2s..."
+            sleep 2
+        done
         # If no data was copied, skip
         if [ ! "$(ls -A $TMP_FOLDER)" ]; then
             echo "[ info] $FOLDER is empty. Skipping."
