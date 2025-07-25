@@ -25,7 +25,7 @@ import datetime
 # Make sure it is in reverse order (newest first)
 
 CURRENT_YEAR = datetime.datetime.now().year
-REPO = f"adsblol/globe_history_2023"
+REPO = f"adsblol/globe_history_{CURRENT_YEAR}"
 RELEASES_FILE = "RELEASES.md"
 PREFERRED_RELEASES_FILE = "PREFERRED_RELEASES.txt"
 CURRENT_SIZE = 0
