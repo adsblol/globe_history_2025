@@ -22,7 +22,7 @@ spec:
                 defaultMode: 0755
           containers:
             - name: kubectl
-              image: bitnami/kubectl:1.26
+              image: bitnami/kubectl:1.31
               command: ["/globe-history/update.sh"]
               volumeMounts:
                 - name: globe-history
