@@ -4,31 +4,32 @@ kind: CronJob
 metadata:
   name: globe-history
 spec:
-  schedule: "0 3,4 * * *"
+  schedule: "22 3,4,5,6,7,8,12,15,19,22 * * *"
   jobTemplate:
     spec:
       template:
         spec:
-          restartPolicy: Never
+          restartPolicy: OnFailure
+          concurrentlyPolicy: Forbid
           securityContext:
             runAsUser: 0
             runAsGroup: 0
           serviceAccountName: globe-history
           volumes:
-          - name: globe-history
-            configMap:
-              name: globe-history
-              defaultMode: 0755
-          containers:
-          - name: kubectl
-            image: bitnami/kubectl:1.26
-            command: ["/globe-history/update.sh"]
-            volumeMounts:
             - name: globe-history
-              mountPath: /globe-history
-            envFrom:
-            - secretRef:
+              configMap:
                 name: globe-history
+                defaultMode: 0755
+          containers:
+            - name: kubectl
+              image: bitnami/kubectl:1.26
+              command: ["/globe-history/update.sh"]
+              volumeMounts:
+                - name: globe-history
+                  mountPath: /globe-history
+              envFrom:
+                - secretRef:
+                    name: globe-history
 ---
 # rbac
 apiVersion: v1
@@ -41,13 +42,13 @@ kind: Role
 metadata:
   name: globe-history
 rules:
-- apiGroups: [""]
-  resources: ["pods"]
-  verbs: ["get", "list", "watch"]
-# exec
-- apiGroups: [""]
-  resources: ["pods/exec"]
-  verbs: ["create"]
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["get", "list", "watch"]
+  # exec
+  - apiGroups: [""]
+    resources: ["pods/exec"]
+    verbs: ["create"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
@@ -58,6 +59,6 @@ roleRef:
   kind: Role
   name: globe-history
 subjects:
-- kind: ServiceAccount
-  name: globe-history
-  namespace: adsblol
+  - kind: ServiceAccount
+    name: globe-history
+    namespace: adsblol
