@@ -40,7 +40,7 @@ The files are written by [readsb](https://github.com/wiedehopf/readsb) and are s
 
 # Acknowledgements
 
-- **The feeders**, without people like you sharing their data, there would be nothiing to share. Together we make an open dataset of flight records for the public.
+- **without people like you sharing their data**, there would be nothing to share. Together, we make an open dataset of flight records for the public.
 - **The existing open source software**, adsb.lol is not much more than a [prod-ready configuration](https://github.com/adsblol/infra) of [readsb](https://github.com/wiedehopf/readsb), [tar1090](https://github.com/wiedehopf/tar1090), [mlat-server](https://github.com/wiedehopf/mlat-server).
 - **GitHub**, for storing and serving open source / open data releases of aircraft flights history.
 - Most other flight aggregators, with the exception of [ADSBHub](https://www.adsbhub.org/), [OpenSky Network](https://opensky-network.org/), for holding tight onto their data and giving me the motivation to show it is possible! :)
