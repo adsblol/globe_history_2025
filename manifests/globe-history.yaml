@@ -8,6 +8,8 @@ spec:
   concurrencyPolicy: Forbid
   jobTemplate:
     spec:
+      activeDeadlineSeconds: 7200
+      ttlSecondsAfterFinished: 86400
       template:
         spec:
           restartPolicy: OnFailure
