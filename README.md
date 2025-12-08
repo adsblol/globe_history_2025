@@ -10,7 +10,7 @@ This includes data from ADSB.lol feeders [and friends](https://www.adsb.lol/docs
 
 ## Releases
 
-All files are downloadable from the [releases tab](https://github.com/adsblol/globe_history_2024/releases) of this repository.
+All files are downloadable from the [releases tab](https://github.com/adsblol/globe_history_2025/releases) of this repository.
 
 See [RELEASES.md](RELEASES.md) for a formatted list of links.
 
